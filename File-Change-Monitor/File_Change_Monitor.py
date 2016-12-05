@@ -37,7 +37,7 @@ if __name__ == '__main__':
 
     #Setup Watch Manager
     wm = pyinotify.WatchManager()
-    wm.add_watch(watchDIR, pyinotify.ALL_EVENTS, rec=True)
+    wm.add_watch(watchDIR, pyinotify.ALL_EVENTS, rec=True) #(Directory watched, Events that get processed, Recursion into directory)
 
     #Event Handler
     eh = EventHandler()
@@ -46,3 +46,9 @@ if __name__ == '__main__':
     notifier = pyinotify.ThreadedNotifier(wm, eh)
     notifier.start()
     #notifier.stop()
+
+
+#Todo:
+#Add exit condition
+#Figure out how to increase polling, updates every min currently. This should pull a stats directory for all files that need transmission
+#Add means to buffer the file changes to transmit
