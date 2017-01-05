@@ -1,9 +1,0 @@
-include ACKS
-include COPYING
-include MANIFEST.in
-include README.md
-include *.py
-recursive-include common *
-recursive-include old *
-recursive-include python2 *
-recursive-include python3 *
