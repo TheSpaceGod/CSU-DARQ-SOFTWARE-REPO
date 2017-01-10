@@ -46,9 +46,3 @@ if __name__ == '__main__':
     notifier = pyinotify.ThreadedNotifier(wm, eh)
     notifier.start()
     #notifier.stop()
-
-
-#Todo:
-#Add exit condition
-#Figure out how to increase polling, updates every min currently. This should pull a stats directory for all files that need transmission
-#Add means to buffer the file changes to transmit
