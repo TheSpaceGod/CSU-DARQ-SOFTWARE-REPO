@@ -6,6 +6,8 @@ import pyinotify
 
 watchDIR = 'TestDir' #Directory to watch
 
+mask = pyinotify.IN_DELETE | pyinotify.IN_CREATE | pyinotify.IN_MODIFY # watched events
+
 #Defining Event Handler
 class EventHandler(pyinotify.ProcessEvent):
     def process_IN_CREATE(self, event):
@@ -23,7 +25,7 @@ if __name__ == '__main__':
 
     #Setup Watch Manager
     wm = pyinotify.WatchManager()
-    wm.add_watch(watchDIR, pyinotify.ALL_EVENTS, rec=True) #(Directory watched, Events that get processed, Recursion into directory)
+    wm.add_watch(watchDIR, mask, rec=True) #(Directory watched, Events that get processed, Recursion into directory)
 
     #Event Handler
     eh = EventHandler()
