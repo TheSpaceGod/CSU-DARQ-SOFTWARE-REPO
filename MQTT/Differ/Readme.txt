@@ -1,1 +1,1 @@
-Use https://pypi.python.org/pypi/unidiff to parse unidiff data
+Use pip install "patch==1.*" to parse unidiff data
