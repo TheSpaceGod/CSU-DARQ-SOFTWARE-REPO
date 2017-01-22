@@ -2,7 +2,7 @@ Compare a and b (lists of strings); return a delta (a generator generating the d
 
 Unified diffs are a compact way of showing just the lines that have changed plus a few lines of context. The changes are shown in an inline style (instead of separate before/after blocks). The number of context lines is set by n which defaults to three.
 
-By default, the diff control lines (those with ---, +++, or @@) are created with a trailing newline. This is helpful so that inputs created from file.readlines() result in diffs that are suitable for use with file.writelines() since both the inputs and outputs have trailing newlines.
+By default, the diff control lines (those with ---, +++, or @@) are with a trailing newline. This is helpful so that inputs created from file.readlines() result in diffs that are suitable for use with file.writelines() since both the inputs and outputs have trailing newlines.
 
 For inputs that do not have trailing newlines, set the lineterm argument to "" so that the output will be uniformly newline free.
 
