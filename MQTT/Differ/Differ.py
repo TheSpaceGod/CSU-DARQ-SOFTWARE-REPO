@@ -37,7 +37,7 @@ class Differ:
 
         differ = diff_match_patch()
         patch = differ.patch_make(readB,b=readA)
-        strOUT = differ.patch_toText(patch)
+        strOUT = self.pathA + ' ' + self.pathB + ' ' + differ.patch_toText(patch)
 
         # print sys.getsizeof(strOUT)
         # print strOUT
