@@ -7,17 +7,13 @@ import sys
 sys.path.append(os.getcwd() + '/google-diff-match-patch/python2')
 from diff_match_patch import *
 
-strIN = 'null'
+class DifferWriter:
+    def __init__(self, strIN):
+        self.made = False
+        self.patch = strIN
 
-pathA = '/media/sf_SpaceGod/Documents/Workspace/CSU-DARQ-SOFTWARE-REPO/MQTT/Folder Observer/TestDir/Test.txt'
-pathB = '/media/sf_SpaceGod/Documents/Workspace/CSU-DARQ-SOFTWARE-REPO/MQTT/Folder Observer/TestDir/Test2.txt'
-fileA = open(pathA, 'r')
-fileB = open(pathB, 'r')
-readA = fileA.read()
-readB = fileB.read()
-fileA.close()
-fileB.close()
+        self.made = True  # Init was successful
 
-differ = diff_match_patch()
-patch = differ.patch_fromText(strIN)
-done = differ.patch_apply(patch, #FILEB)
+# differ = diff_match_patch()
+# patch = differ.patch_fromText(strIN)
+# done = differ.patch_apply(patch, #FILEB)
