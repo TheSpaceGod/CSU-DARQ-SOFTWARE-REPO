@@ -8,22 +8,17 @@ sys.path.append(os.getcwd() + '/google-diff-match-patch/python2')
 from diff_match_patch import *
 
 class Differ:
-    def __init__(self):
+    def __init__(self, A, B):
         self.made = False
-
-        if(not len(sys.argv == 2)):
-            print 'ERROR: Not enough arguments.'
-            exit()
-
-        self.pathA = sys.argv[1]
-        self.pathB = sys.argv[2]
+        self.pathA = A
+        self.pathB = B
 
         if(not os.path.exists(self.pathA)):
-            print 'ERROR: Arg[1] path does not exist.'
+            print 'ERROR: Arg[1] pathA does not exist.'
             exit()
 
         if(not os.path.exists(self.pathB)):
-            print 'ERROR: Arg[2] path does not exist.'
+            print 'ERROR: Arg[2] pathB does not exist.'
             exit()
 
         self.made = True #Init was successful
