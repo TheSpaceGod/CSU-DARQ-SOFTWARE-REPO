@@ -39,7 +39,7 @@ class Differ:
         patch = differ.patch_make(readB,b=readA)
         strOUT = differ.patch_toText(patch)
 
-        print sys.getsizeof(strOUT)
-        print strOUT
+        # print sys.getsizeof(strOUT)
+        # print strOUT
 
         return strOUT
