@@ -8,4 +8,4 @@ For inputs that do not have trailing newlines, set the lineterm argument to "" s
 
 The context diff format normally has a header for filenames and modification times. Any or all of these may be specified using strings for fromfile, tofile, fromfiledate, and tofiledate. The modification times are normally expressed in the ISO 8601 format. If not specified, the strings default to blanks.
 
-ajfdl;jadlfk
+aj

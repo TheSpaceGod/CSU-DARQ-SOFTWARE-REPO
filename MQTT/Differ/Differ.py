@@ -1,12 +1,11 @@
 #!/usr/bin/env python
 
-#This program takes in two file address and outputs diff string
-
 import os
 import sys
 sys.path.append(os.getcwd() + '/google-diff-match-patch/python2')
 from diff_match_patch import *
 
+#This class takes in two file address and outputs diff string
 class Differ:
     def __init__(self, A, B):
         self.made = False
@@ -43,3 +42,15 @@ class Differ:
         # print strOUT
 
         return strOUT
+
+#This class writes the differences found by Differ to files
+class DifferWriter():
+    def __init__(self, strIN):
+        self.made = False
+        self.patch = strIN
+
+        self.made = True  # Init was successful
+
+# differ = diff_match_patch()
+# patch = differ.patch_fromText(strIN)
+# done = differ.patch_apply(patch, #FILEB)
