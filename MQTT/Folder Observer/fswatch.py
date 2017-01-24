@@ -10,11 +10,12 @@ sync to a remote directory. The script can be easily modified to
 do whatever you want on a change event.
 
 requires: pip install watchdog
+pip install configparser
 
 """
 
 import os, os.path, datetime, time
-import ConfigParser
+import configparser
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 
@@ -29,7 +30,7 @@ ignore_list = ['.svn', '.DS_Store', '.git']
 
 def load_config():
     global local_path, remote_host, remote_path
-    configParser = ConfigParser.RawConfigParser()
+    configParser = configparser.RawConfigParser()
     configFilePath = "./fswatch.conf"
     if not os.path.isfile(configFilePath):
         print("Config file fswatch.conf not found")
