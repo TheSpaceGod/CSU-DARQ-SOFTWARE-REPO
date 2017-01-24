@@ -36,7 +36,7 @@ class Differ:
 
         differ = diff_match_patch()
         patch = differ.patch_make(readB,b=readA)
-        strOUT = self.pathA + ' ' + self.pathB + ' ' + differ.patch_toText(patch)
+        strOUT = self.pathA + ' ' + self.pathB + '\n' + differ.patch_toText(patch)
 
         # print sys.getsizeof(strOUT)
         # print strOUT
@@ -48,9 +48,17 @@ class DifferWriter():
     def __init__(self, strIN):
         self.made = False
         self.patch = strIN
-
         self.made = True  # Init was successful
 
-# differ = diff_match_patch()
-# patch = differ.patch_fromText(strIN)
-# done = differ.patch_apply(patch, #FILEB)
+    def run(self):
+        if(self.made == False):
+            print 'ERROR: Init failed for DifferWriter, cannot execute run.'
+            exit()
+
+        #Read in file paths here at beginning of string in so it knows what files to write to.
+        #Use relative OS paths so both OSs end in same location
+
+        differ = diff_match_patch()
+        #Rip out paths before this
+        patch = differ.patch_fromText(strIN)
+        # done = differ.patch_apply(patch, #FILEB)
