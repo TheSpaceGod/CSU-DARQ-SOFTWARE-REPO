@@ -8,3 +8,4 @@ result = boo.run()
 print result
 
 coo = DifferWriter(result)
+coo.run()
