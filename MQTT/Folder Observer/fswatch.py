@@ -14,7 +14,7 @@ pip install configparser
 
 """
 
-import os, os.path, datetime, time
+import os, datetime, time
 import configparser
 
 from watchdog.observers import Observer
@@ -22,8 +22,8 @@ from watchdog.events import FileSystemEventHandler
 import watchdog.events as events
 
 # config parameters
-local_path = "/Users/jordenh18/Desktop/SENIOR DESIGN/GitRepo/CSU-DARQ-SOFTWARE-REPO/MQTT/Folder Observer/fsTestDir/test.txt"
-dir_path = "/Users/jordenh18/Desktop/SENIOR DESIGN/GitRepo/CSU-DARQ-SOFTWARE-REPO/MQTT/Folder Observer/fsTestDir"
+local_path = os.getcwd() + "/Folder Observer/fsTestDir/test.txt"
+dir_path = os.getcwd() + "/Folder Observer/fsTestDir"
 
 
 def display(str):
