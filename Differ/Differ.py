@@ -59,5 +59,7 @@ class DifferWriter():
 
         differ = diff_match_patch()
         self.patch = differ.patch_fromText(self.patch)
+        #Current problem, wont patch straight to file. Trying to avoid writting entire file every time a patch string
+        # is made. Balance between using high level language for all OSs and just using linux patcher
         done = differ.patch_apply(self.patch, fileB)
         fileB.close()
