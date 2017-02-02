@@ -14,6 +14,9 @@ import os, datetime, time
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 
+
+
+
 # config parameters
 local_path = os.getcwd() + "../TestDir/test.txt"
 dir_path = os.getcwd() + "../TestDir"

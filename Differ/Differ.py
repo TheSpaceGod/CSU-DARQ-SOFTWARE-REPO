@@ -1,16 +1,18 @@
 #!/usr/bin/env python
 
 import os
-import sys
-sys.path.append(os.getcwd() + '/google-diff-match-patch/python3')
+#import sys
+#sys.path.append(os.getcwd() + '/google-diff-match-patch/python3')
 from diff_match_patch import *
 
 #This class takes in two file address and outputs diff string
-class Differ:
+
+
+class Differ():
     def __init__(self, A, B):
         self.made = False
-        self.pathA = A
-        self.pathB = B
+        self.pathA = str(A)
+        self.pathB = str(B)
 
         if(not os.path.exists(self.pathA)):
             print ('ERROR: Arg[1] pathA does not exist.')
@@ -36,9 +38,10 @@ class Differ:
 
         differ = diff_match_patch()
         patch = differ.patch_make(readB,b=readA)
+        print(differ.patch_toText(patch))
         strOUT = self.pathA + '\n' + self.pathB + '\n' + differ.patch_toText(patch)
 
-        return strOUT
+        return str(strOUT)
 
 #This class writes the differences found by Differ to files
 class DifferWriter():
