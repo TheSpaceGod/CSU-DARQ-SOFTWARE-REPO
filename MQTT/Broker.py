@@ -1,7 +1,13 @@
 #!/usr/bin/python
 
+import subprocess
+
 class Broker:
-    def start(self):
-        #kaljfd;la
+    def __init__(self):
+        self.P = subprocess.call("sudo /etc/init.d/mosquitto start")
+
     def stop(self):
-        #alkdjf;lkajdf
+        self.P = subprocess.call("sudo /etc/init.d/mosquitto stop")
+
+    def readLOG(self):
+        LogFile = open("/var/log/mosquitto/mosquitto.log", mode = 'r')
