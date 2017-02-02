@@ -14,6 +14,9 @@ import os, datetime, time
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 
+
+
+
 # config parameters
 local_path = os.getcwd() + "../TestDir/test.txt"
 dir_path = os.getcwd() + "../TestDir"
@@ -29,8 +32,9 @@ class MySyncHandler(FileSystemEventHandler):
     def on_modified(self, event):
         print("modified")
 
-
 ## main loop
+
+
 def main():
     global local_path
     observer = Observer()
