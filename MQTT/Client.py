@@ -10,7 +10,7 @@ class MQTTclient:
         # http://www.hivemq.com/blog/mqtt-essentials-part-6-mqtt-quality-of-service-levels
         self.QOS = 2
 
-    # Connect to MQTT Broker
+    # Connect to MQTT Broker, we use the mosquitto broker
     def connect(self, host, port):
         # client.connect(host=”localhost”, port=1883, keepalive=60, bind_address=””)
         self.client.connect(host, port)
