@@ -29,8 +29,9 @@ class MySyncHandler(FileSystemEventHandler):
     def on_modified(self, event):
         print("modified")
 
-
 ## main loop
+
+
 def main():
     global local_path
     observer = Observer()
