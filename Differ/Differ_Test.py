@@ -1,7 +1,7 @@
 from Differ import *
 
-pathA = '../FolderObserver/TestDir/Test.txt'
-pathB = '../FolderObserver/TestDir/Test2.txt'
+pathA = '../TestDir/Test.txt'
+pathB = '../TestDir/Test2.txt'
 
 boo = Differ(pathA, pathB)
 result = boo.run()

@@ -22,8 +22,8 @@ from watchdog.events import FileSystemEventHandler
 import watchdog.events as events
 
 # config parameters
-local_path = os.getcwd() + "/../TestDir/test.txt"
-dir_path = os.getcwd() + "/../TestDir"
+local_path = os.getcwd() + "../TestDir/test.txt"
+dir_path = os.getcwd() + "../TestDir"
 
 
 def display(str):
