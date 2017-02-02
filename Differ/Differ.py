@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 
 import os
-#import sys
-#sys.path.append(os.getcwd() + '/google-diff-match-patch/python3')
 from diff_match_patch import *
 
 #This class takes in two file address and outputs diff string
