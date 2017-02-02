@@ -1,6 +1,5 @@
-Drone will use the python module pynotify to watch a specified output folder and transmit any observed changes via MQTT
+Drone will use the python module watchdog to watch a specified output folder and transmit any observed changes via MQTT
 to our base station.
+Watchdog is used because it is OS independent
 
-sudo pip install pyinotify
-
-Switch over to watchdog to monitor so it is os independent
+To get watchdog, run  sudo pip install watchdog
