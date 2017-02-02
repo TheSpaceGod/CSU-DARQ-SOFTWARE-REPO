@@ -5,8 +5,12 @@ import paho.mqtt.client as mqtt
 
 class MQTTclient:
     def __init__(self):
-        self.client = 'null'
-        self.QOS = 'null'
+        # paho.Client(client_id=””, clean_session=True, userdata=None, protocol=paho.MQTTv31)
+        self.client = mqtt.Client()
+        # At most once (0), At least once (1), Exactly once (2)
+        # http://www.hivemq.com/blog/mqtt-essentials-part-6-mqtt-quality-of-service-levels
+        self.QOS = 2
+        self.client.on_message = on_message
 
 ########################################################################################################################
 
@@ -27,14 +31,6 @@ class MQTTclient:
         print("Subscribed: " + str(mid) + " " + str(granted_qos))
 
 ########################################################################################################################
-
-    def create(self):
-        # paho.Client(client_id=””, clean_session=True, userdata=None, protocol=paho.MQTTv31)
-        self.client = mqtt.Client()
-        # At most once (0), At least once (1), Exactly once (2)
-        # http://www.hivemq.com/blog/mqtt-essentials-part-6-mqtt-quality-of-service-levels
-        self.QOS = 2
-        self.client.on_message = mqtt.on_message
 
     # The connect() function connects the client to a broker.
     def connect(self, host, port):
