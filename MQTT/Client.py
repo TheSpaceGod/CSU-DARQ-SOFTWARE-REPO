@@ -5,7 +5,7 @@ import paho.mqtt.client as mqtt
 
 class MQTTclient:
     def __init__(self):
-        # paho.Client(client_id=””, clean_session=True, userdata=None, protocol=paho.MQTTv31)
+        # Client(client_id=””, clean_session=True, userdata=None, protocol=paho.MQTTv31)
         self.client = mqtt.Client()
         # At most once (0), At least once (1), Exactly once (2)
         # http://www.hivemq.com/blog/mqtt-essentials-part-6-mqtt-quality-of-service-levels
