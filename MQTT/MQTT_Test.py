@@ -1,9 +1,10 @@
 #!/usr/bin/python
 
 from Broker import *
-# from Client import *
+from Client import *
 
-broker = Broker()
-broker.start()
-broker.readLOG()
-broker.stop()
+client = MQTTclient()
+# broker = Broker()
+# broker.start()
+# broker.readLOG()
+# broker.stop()

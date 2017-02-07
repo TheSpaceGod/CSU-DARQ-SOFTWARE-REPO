@@ -10,7 +10,7 @@ class MQTTclient:
         # At most once (0), At least once (1), Exactly once (2)
         # http://www.hivemq.com/blog/mqtt-essentials-part-6-mqtt-quality-of-service-levels
         self.QOS = 2
-        self.client.on_message = on_message
+        self.client.on_message = self.on_message
 
 ########################################################################################################################
 
@@ -33,7 +33,7 @@ class MQTTclient:
 ########################################################################################################################
 
     # The connect() function connects the client to a broker.
-    def connect(self, host, port):
+    def connect(self, host="localhost", port=1883):
         # client.connect(host=”localhost”, port=1883, keepalive=60, bind_address=””)
         self.client.connect(host, port)
 
