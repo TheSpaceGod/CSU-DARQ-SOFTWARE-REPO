@@ -11,6 +11,8 @@ class MQTTclient:
         # http://www.hivemq.com/blog/mqtt-essentials-part-6-mqtt-quality-of-service-levels
         self.QOS = 2
         self.client.on_message = self.on_message
+        # username_pw_set(username, password=None)
+        self.client.username_pw_set("Drone", password="DARQ")
 
 ########################################################################################################################
 
