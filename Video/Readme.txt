@@ -18,4 +18,3 @@ On Computer:
 open vlc, go to network stream, enter "rtsp://[IP].[TO].[THE].[PI]:8554/"
 
 !!!Note: running the vlc on base station vm is laggy because virtualized computer does not have much video memory.!!!
-
