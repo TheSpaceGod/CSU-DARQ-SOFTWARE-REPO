@@ -1,1 +1,2 @@
-pip install diff-match-patch
+pip install watchdog
+pip install bsdiff4
