@@ -18,33 +18,44 @@ class MQTTclient:
         self.client.on_subscribe = self.on_subscribe
 
         # username_pw_set(username, password=None)
-        self.client.username_pw_set("Drone", password="DARQ")
+        # self.client.username_pw_set("Drone", password="DARQ")
 
 ########################################################################################################################
 # Replaced 'client' with 'self' on all function headers
 
     # Called when the broker responds to our connection request.
-    def on_connect(self, userdata, flags, rc):
+    def on_connect(self, client, userdata, flags, rc):
         if self.debug: print("CONNACK received with code % d." % (rc))
 
+    # Called when the client disconnects from the broker.
+    def on_disconnect(self, client, userdata, rc):
+        if self.debug: print("Disconnected with code % d." % (rc))
+
     # Called when a message has been received on a topic that the client subscribes to.
-    def on_message(self, userdata, msg):
+    def on_message(self, client, userdata, msg):
         if self.debug: print(msg.topic + " " + str(msg.qos) + " " + str(msg.payload))
 
     # Called when a message that was to be sent using the publish() call has completed transmission to the broker.
-    def on_publish(self, userdata, mid):
+    def on_publish(self, client, userdata, mid):
         if self.debug: print("mid: " + str(mid))
 
     # Called when the broker responds to a subscribe request.
-    def on_subscribe(self, userdata, mid, granted_qos):
+    def on_subscribe(self, client, userdata, mid, granted_qos):
         if self.debug: print("Subscribed: " + str(mid) + " " + str(granted_qos))
 
 ########################################################################################################################
 
     # The connect() function connects the client to a broker.
-    def connect(self, host="localhost", port=1883):
+    def connect(self, host="localhost", port=1883, keepalive=60):
         # client.connect(host="localhost", port=1883, keepalive=60, bind_address="")
-        self.client.connect(host, port)
+        self.client.connect(host, port, keepalive)
+        # Network loop needs to be started after connection for things to work properly
+        self.client.loop_start()
+
+    # Disconnect from the broker cleanly.
+    def disconnect(self):
+        self.client.disconnect()
+        self.client.loop_stop()
 
     # This causes a message to be sent to the broker and subsequently from the broker to any clients subscribing to
     # matching topics.
