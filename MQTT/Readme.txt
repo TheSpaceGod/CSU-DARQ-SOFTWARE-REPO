@@ -10,3 +10,28 @@ Broker help:            https://www.youtube.com/watch?v=PgsH43Tpqjc
 
 User: Drone
 PW: DARQ
+
+########################################################################################################################
+# Place your local configuration in /etc/mosquitto/conf.d/
+#
+# A full description of the configuration file is at
+# /usr/share/doc/mosquitto/examples/mosquitto.conf.example
+
+pid_file /var/run/mosquitto.pid
+
+persistence true
+persistence_location /var/lib/mosquitto/
+
+log_dest topic
+
+
+log_type error
+log_type warning
+log_type notice
+log_type information
+
+log_dest file /var/log/mosquitto/mosquitto.log
+
+include_dir /etc/mosquitto/conf.d
+
+allow_anonymous true
