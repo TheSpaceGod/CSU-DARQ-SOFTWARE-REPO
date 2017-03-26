@@ -8,12 +8,11 @@ broker = Broker(debug=True)
 broker.start()
 
 clientA = MQTTclient(debug=True)
-clientB = MQTTclient(debug=True)
 clientA.connect()
-clientB.connect()
 
-clientA.subscribe('/home')
-clientB.publish('/home', 'hello')
+clientA.subscribe('home')
+clientA.publish('home', 'hello')
+clientA.disconnect()
 
 time.sleep(5)
 
