@@ -10,11 +10,14 @@ broker.start()
 clientA = MQTTclient(debug=True)
 clientA.connect()
 
-clientA.subscribe('home')
-clientA.publish('home', 'hello')
-clientA.disconnect()
+clientB = MQTTclient(debug=True)
+clientB.connect()
 
+clientB.subscribe('home')
+clientA.publish('home', 'hello')
 time.sleep(5)
+clientA.disconnect()
+clientB.disconnect()
 
 # broker.readLOG()
 broker.stop()

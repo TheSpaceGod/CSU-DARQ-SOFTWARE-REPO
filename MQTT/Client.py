@@ -46,15 +46,16 @@ class MQTTclient:
 ########################################################################################################################
 
     # The connect() function connects the client to a broker.
-    def connect(self, host="localhost", port=1883):
+    def connect(self, host="localhost", port=1883, keepalive=60):
         # client.connect(host="localhost", port=1883, keepalive=60, bind_address="")
-        self.client.connect(host, port)
+        self.client.connect(host, port, keepalive)
         # Network loop needs to be started after connection for things to work properly
         self.client.loop_start()
 
     # Disconnect from the broker cleanly.
     def disconnect(self):
         self.client.disconnect()
+        self.client.loop_stop()
 
     # This causes a message to be sent to the broker and subsequently from the broker to any clients subscribing to
     # matching topics.
