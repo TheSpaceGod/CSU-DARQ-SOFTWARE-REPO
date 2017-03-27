@@ -1,5 +1,10 @@
 #!/usr/bin/python
 
-#What to run at start up
+class Drone:
+    def __init__(self):
 
-#What to run for main operation
+    def run(self):
+
+    def stop(self):
+
+if __name__ == '__main__':

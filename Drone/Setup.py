@@ -3,7 +3,6 @@
 
 import os
 import subprocess
-import sys
 import time
 
 class Setup():
@@ -12,6 +11,10 @@ class Setup():
         if euid != 0:
             print("Need to be root to run Setup.")
             exit()
+        # Change working directory to that of this file
+        abspath = os.path.abspath(__file__)
+        dname = os.path.dirname(abspath)
+        os.chdir(dname)
         print("\nSetup Initialized.\n")
 
     def mainSetup(self):
@@ -27,13 +30,17 @@ class Setup():
             exit()
 
         # Debian Core Packages, Install List:
+        # Aircrack-ng
         # APM Copter
+        # Git
+        # Kismet
         # Mosh SSH
         # Python PIP Module Installer
+        # Reaver
         # VLC Media Player
         print("Installing core Debian packages. Please wait.")
         try:
-            p = subprocess.Popen(['sudo', 'apt-get', '--assume-yes', 'install', 'apm-copter-pxfmini', 'mosh', 'python-pip', 'vlc'], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            p = subprocess.Popen(['sudo', 'apt-get', '--assume-yes', 'install', 'aircrack-ng', 'apm-copter-pxfmini', 'git', 'kismet', 'mosh', 'python-pip', 'reaver', 'vlc'], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
             while p.poll() is None:
                 time.sleep(1)
             print(p.stdout.read() + '\n')
@@ -62,15 +69,7 @@ class Setup():
             exit()
 
         # NetworkMonitoring Dependencies
-        # try:
-        #     p = subprocess.Popen(['sudo', 'python', '../MQTT/Setup.py'], stdin=subprocess.PIPE,
-        #                          stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        #     while p.poll() is None:
-        #         time.sleep(1)
-        #     print(p.stdout.read() + '\n')
-        # except subprocess.CalledProcessError as e:
-        #     print("Install of MQTT dependencies failed, exiting. Error: ", e)
-        #     exit()
+        # None needed so far
 
         # Observer Dependencies
         try:
@@ -91,6 +90,26 @@ class Setup():
             print(p.stdout.read() + '\n')
         except subprocess.CalledProcessError as e:
             print("Install of Video dependencies failed, exiting. Error: ", e)
+            exit()
+
+        # Installing Project Git Repo
+        print("Installing/Updating CSU DARQ Git Repo.")
+        try:
+            if os.path.exists('~/CSU-DARQ-SOFTWARE-REPO'):
+                backpath = os.getcwd()
+                os.chdir('~/CSU-DARQ-SOFTWARE-REPO')
+                p = subprocess.Popen(['sudo', 'git', 'pull'], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                while p.poll() is None:
+                    time.sleep(1)
+                print(p.stdout.read() + '\n')
+                os.chdir(backpath)
+            else:
+                p = subprocess.Popen(['sudo', 'git', 'clone', 'https://github.com/TheSpaceGod/CSU-DARQ-SOFTWARE-REPO.git'], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                while p.poll() is None:
+                    time.sleep(1)
+                print(p.stdout.read() + '\n')
+        except subprocess.CalledProcessError as e:
+            print("CSU DARQ Git Repo failed to install, exiting. Error: ", e)
             exit()
 
         print("Setup complete! :)")

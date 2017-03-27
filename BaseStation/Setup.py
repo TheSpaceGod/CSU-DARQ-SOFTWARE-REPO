@@ -3,7 +3,6 @@
 
 import os
 import subprocess
-import sys
 import time
 
 class Setup():
@@ -12,6 +11,10 @@ class Setup():
         if euid != 0:
             print("Need to be root to run Setup.")
             exit()
+        # Change working directory to that of this file
+        abspath = os.path.abspath(__file__)
+        dname = os.path.dirname(abspath)
+        os.chdir(dname)
         print("\nSetup Initialized.\n")
 
     def mainSetup(self):
@@ -27,13 +30,17 @@ class Setup():
             exit()
 
         # Debian Core Packages, Install List:
+        # Aircrack-ng
+        # Git
+        # Kismet
         # Mosh SSH
         # Mosquitto MQTT Broker
         # Python PIP Module Installer
+        # Reaver
         # VLC Media Player
         print("Installing core Debian packages. Please wait.")
         try:
-            p = subprocess.Popen(['sudo', 'apt-get', '--assume-yes', 'install', 'mosh', 'mosquitto', 'mosquitto-clients', 'python-pip', 'vlc'], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            p = subprocess.Popen(['sudo', 'apt-get', '--assume-yes', 'install', 'aircrack-ng', 'git', 'kismet', 'mosh', 'mosquitto', 'mosquitto-clients', 'python-pip', 'reaver', 'vlc'], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
             while p.poll() is None:
                 time.sleep(1)
             print(p.stdout.read() + '\n')
@@ -57,20 +64,26 @@ class Setup():
             while p.poll() is None:
                 time.sleep(1)
             print(p.stdout.read() + '\n')
+
+            # MQTT broker configuration
+            print("Configuring MQTT broker.")
+            p = subprocess.Popen(['sudo', 'rm', '/etc/mosquitto/mosquitto.conf'], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            while p.poll() is None:
+                time.sleep(1)
+            print(p.stdout.read() + '\n')
+
+            p = subprocess.Popen(['sudo', 'cp', '../MQTT/mosquitto.conf', '/etc/mosquitto/mosquitto.conf'], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            while p.poll() is None:
+                time.sleep(1)
+            print(p.stdout.read() + '\n')
+
+            print("MQTT broker configured")
         except subprocess.CalledProcessError as e:
             print("Install of MQTT dependencies failed, exiting. Error: ", e)
             exit()
 
         # NetworkMonitoring Dependencies
-        # try:
-        #     p = subprocess.Popen(['sudo', 'python', '../MQTT/Setup.py'], stdin=subprocess.PIPE,
-        #                          stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        #     while p.poll() is None:
-        #         time.sleep(1)
-        #     print(p.stdout.read() + '\n')
-        # except subprocess.CalledProcessError as e:
-        #     print("Install of MQTT dependencies failed, exiting. Error: ", e)
-        #     exit()
+        # None needed so far
 
         # Observer Dependencies
         try:
