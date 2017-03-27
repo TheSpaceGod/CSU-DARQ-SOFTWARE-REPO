@@ -30,13 +30,17 @@ class Setup():
             exit()
 
         # Debian Core Packages, Install List:
+        # Aircrack-ng
+        # Git
+        # Kismet
         # Mosh SSH
         # Mosquitto MQTT Broker
         # Python PIP Module Installer
+        # Reaver
         # VLC Media Player
         print("Installing core Debian packages. Please wait.")
         try:
-            p = subprocess.Popen(['sudo', 'apt-get', '--assume-yes', 'install', 'mosh', 'mosquitto', 'mosquitto-clients', 'python-pip', 'vlc'], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            p = subprocess.Popen(['sudo', 'apt-get', '--assume-yes', 'install', 'aircrack-ng', 'git', 'kismet', 'mosh', 'mosquitto', 'mosquitto-clients', 'python-pip', 'reaver', 'vlc'], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
             while p.poll() is None:
                 time.sleep(1)
             print(p.stdout.read() + '\n')
