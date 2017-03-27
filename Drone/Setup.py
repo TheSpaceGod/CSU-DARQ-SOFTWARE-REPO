@@ -33,14 +33,15 @@ class Setup():
         # Aircrack-ng
         # APM Copter
         # Git
-        # Kismet
+        # GPSD and GPSD-Clients
+        # Kismet -- skipping right now, needs package config
         # Mosh SSH
         # Python PIP Module Installer
         # Reaver
         # VLC Media Player
         print("Installing core Debian packages. Please wait.")
         try:
-            p = subprocess.Popen(['sudo', 'apt-get', '--assume-yes', 'install', 'aircrack-ng', 'apm-copter-pxfmini', 'git', 'kismet', 'mosh', 'python-pip', 'reaver', 'vlc'], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            p = subprocess.Popen(['sudo', 'apt-get', '--assume-yes', 'install', 'aircrack-ng', 'apm-copter-pxfmini', 'git', 'gpsd', 'gpsd-clients', 'mosh', 'python-pip', 'reaver', 'vlc'], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
             while p.poll() is None:
                 time.sleep(1)
             print(p.stdout.read() + '\n')
