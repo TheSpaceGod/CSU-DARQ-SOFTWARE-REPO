@@ -1,5 +1,7 @@
 #!/usr/bin/python
 # This Setup script is assuming it running on a Debian based system using apt package manager.
+# Things to add:
+# Expand root file system then reboot 'sudo raspi-config --expand-rootfs'
 
 import os
 import subprocess
