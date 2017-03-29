@@ -23,3 +23,6 @@ http://www.raspberry-projects.com/pi/pi-hardware/raspberry-pi-camera/streaming-v
 
 Try streaming with only vlc
 https://wiki.videolan.org/Documentation:Streaming_HowTo/Command_Line_Examples/
+
+raspivid -o - -t 0 -vf -hf -n -w 400 -h 200 -fps 12 | cvlc -vvv stream:///dev/stdin --sout '#rtp{sdp=rtsp://:8554/}' :demux=h264
+
