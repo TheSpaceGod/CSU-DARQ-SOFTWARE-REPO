@@ -1,0 +1,13 @@
+# Please note that this file is written to be used with dhcpcd.
+# For static IP, consult /etc/dhcpcd.conf and 'man dhcpcd.conf'.
+
+auto lo
+iface lo inet loopback
+
+auto wlan0
+allow-hotplug wlan0
+iface wlan0 inet dhcp
+	#wpa-ssid csu-eid
+	pre-up wpa_supplicant -B -Dwext -i wlan0 -c/etc/wpa_supplicant/wpa_supplicant.conf -f /var/log/wpa_supplicant.log 
+	post-down killall -q wpa_supplicant
+	#wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf
